@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devenir traiteur partenaire | LSB Réceptions</title>
+<meta name="description" content="Rejoignez le réseau de traiteurs partenaires de LSB Réceptions en Estrie. Chaque candidature est examinée avant toute intégration.">
+<link rel="canonical" href="https://lsbreceptions.ca/devenir-partenaire">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/site-base.css">
+<style>
+.page-hero{background:var(--panel-dark);color:var(--cream);padding:48px clamp(20px,5vw,56px) 40px;text-align:center}
+.page-hero h1{font-size:clamp(24px,3.4vw,34px)}
+.page-hero p{max-width:580px;margin:14px auto 0;color:#dccbbb;font-size:14px;line-height:1.6}
+.notice{max-width:720px;margin:0 auto 36px;background:var(--cream-2);border-radius:4px;padding:18px 22px;font-size:13px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<section class="page-hero">
+  <div class="eyebrow">Réseau de partenaires</div>
+  <h1>Devenir traiteur partenaire LSB Réceptions</h1>
+  <p>Nous développons un réseau de traiteurs indépendants en Estrie, avec l'objectif de l'étendre progressivement au Québec.</p>
+</section>
+
+<section>
+  <div class="form-wrap">
+    <div class="notice">
+      Chaque candidature est examinée par notre équipe avant toute intégration au réseau. Votre entreprise n'est jamais publiée automatiquement sur le site, et aucune demande client ne vous est transmise sans notre validation préalable.
+    </div>
+
+    <form id="partner-form">
+      <div id="form-error-slot"></div>
+      <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+        <label for="website">Laisser vide</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="field-grid">
+        <div class="field"><label for="companyName">Nom de l'entreprise *</label><input type="text" id="companyName"></div>
+        <div class="field"><label for="contactName">Nom du contact *</label><input type="text" id="contactName"></div>
+      </div>
+      <div class="field-grid">
+        <div class="field"><label for="email">Courriel *</label><input type="email" id="email"></div>
+        <div class="field"><label for="phone">Téléphone *</label><input type="tel" id="phone"></div>
+      </div>
+      <div class="field"><label for="territory">Territoires desservis *</label><input type="text" id="territory" placeholder="Ex. Sherbrooke et environs"></div>
+      <div class="field"><label for="specialties">Spécialités et formules proposées *</label><textarea id="specialties" placeholder="Ex. buffets chauds, cocktails, cuisine antillaise…"></textarea></div>
+      <div class="field-grid">
+        <div class="field"><label for="capacity">Capacité approximative <span class="hint">(facultatif)</span></label><input type="text" id="capacity" placeholder="Ex. jusqu'à 200 invités"></div>
+        <div class="field"><label for="minimumOrder">Minimum de commande <span class="hint">(facultatif)</span></label><input type="text" id="minimumOrder"></div>
+      </div>
+      <div class="field">
+        <label>Services disponibles <span class="hint">(facultatif)</span></label>
+        <label class="check-row"><input type="checkbox" id="svc-livraison"><span>Livraison</span></label>
+        <label class="check-row"><input type="checkbox" id="svc-installation"><span>Installation sur place</span></label>
+        <label class="check-row"><input type="checkbox" id="svc-personnel"><span>Personnel de service</span></label>
+      </div>
+      <div class="field"><label for="permits">Permis et assurances <span class="hint">(numéro ou description — sert uniquement à la vérification)</span></label><textarea id="permits" placeholder="Ex. permis MAPAQ, assurance responsabilité civile…"></textarea></div>
+      <div class="field"><label for="comments">Commentaires <span class="hint">(facultatif)</span></label><textarea id="comments"></textarea></div>
+
+      <label class="check-row">
+        <input type="checkbox" id="consent" required>
+        <span>Je comprends que cette candidature sera examinée par LSB Réceptions avant toute intégration au réseau de partenaires, et qu'elle ne constitue pas une entente de collaboration.</span>
+      </label>
+
+      <button type="submit" class="btn btn-block" id="submit-btn">Envoyer ma candidature</button>
+    </form>
+
+    <div id="partner-success" style="display:none">
+      <div class="confirm-screen">
+        <div class="confirm-check">✓</div>
+        <h3 style="font-family:'Fraunces',serif">Votre candidature est envoyée.</h3>
+        <p style="color:var(--muted);margin-top:10px">Merci ! Notre équipe l'examinera et vous contactera si elle correspond à nos besoins actuels.</p>
+        <div class="confirm-ref" id="partner-ref"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div id="site-footer"></div>
+</footer>
+
+<script src="/shared/site-chrome.js"></script>
+<script>
+const FORM_LOADED_AT = Date.now();
+document.getElementById('partner-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errorSlot = document.getElementById('form-error-slot');
+  errorSlot.innerHTML = '';
+  const showError = (msg) => { errorSlot.innerHTML = `<div class="error-box">${msg}</div>`; errorSlot.scrollIntoView({ behavior:'smooth', block:'center' }); };
+
+  const companyName = document.getElementById('companyName').value.trim();
+  const contactName = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const territory = document.getElementById('territory').value.trim();
+  const specialties = document.getElementById('specialties').value.trim();
+  const consent = document.getElementById('consent').checked;
+
+  if (!companyName || !contactName || !email || !phone || !territory || !specialties || !consent){
+    showError('Merci de remplir tous les champs obligatoires (*) et de cocher la case de consentement.');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showError('Merci d\'entrer une adresse courriel valide.'); return; }
+
+  const services = [];
+  if (document.getElementById('svc-livraison').checked) services.push('Livraison');
+  if (document.getElementById('svc-installation').checked) services.push('Installation');
+  if (document.getElementById('svc-personnel').checked) services.push('Personnel de service');
+
+  const payload = {
+    companyName, contactName, email, phone, territory, specialties,
+    capacity: document.getElementById('capacity').value.trim(),
+    minimumOrder: document.getElementById('minimumOrder').value.trim(),
+    services,
+    permits: document.getElementById('permits').value.trim(),
+    comments: document.getElementById('comments').value.trim(),
+    website: document.getElementById('website').value,
+    formLoadedAt: FORM_LOADED_AT,
+  };
+
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.disabled = true; submitBtn.textContent = 'Envoi…';
+
+  try {
+    const res = await fetch('/.netlify/functions/partner-application', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) throw new Error(data.message || "Erreur lors de l'envoi.");
+    document.getElementById('partner-form').style.display = 'none';
+    document.getElementById('partner-ref').textContent = `Référence : ${data.applicationRef || '—'}`;
+    document.getElementById('partner-success').style.display = 'block';
+    document.getElementById('partner-success').scrollIntoView({ behavior:'smooth', block:'start' });
+  } catch (err) {
+    console.error('[devenir-partenaire:submit]', err);
+    showError(err.message || 'Une erreur est survenue lors de l\'envoi. Vos réponses sont conservées — vous pouvez réessayer.');
+    submitBtn.disabled = false; submitBtn.textContent = 'Envoyer ma candidature';
+  }
+});
+renderSiteChrome('');
+</script>
+</body>
+</html>

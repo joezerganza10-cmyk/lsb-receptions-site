@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nos formules traiteur | LSB Réceptions</title>
+<meta name="description" content="Buffets, boîtes-repas, cocktails et bouchées, repas avec service, déjeuners et pauses-café — découvrez les formules de LSB Réceptions, réalisées par nos traiteurs partenaires en Estrie.">
+<link rel="canonical" href="https://lsbreceptions.ca/formules">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/site-base.css">
+<style>
+.page-hero{background:var(--panel-dark);color:var(--cream);padding:56px clamp(20px,5vw,56px) 44px;text-align:center}
+.page-hero h1{font-size:clamp(26px,3.6vw,38px)}
+.page-hero p{max-width:620px;margin:14px auto 0;color:#dccbbb;font-size:14.5px;line-height:1.6}
+.formule-detail{max-width:1000px;margin:0 auto;padding:56px 0;border-bottom:1px solid var(--line)}
+.formule-detail:last-child{border-bottom:none}
+.fd-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,50px);align-items:start}
+.fd-photo{aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--cream-3);display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:12.5px;text-align:center;padding:20px}
+.fd-photo img{width:100%;height:100%;object-fit:cover}
+.fd-body h2{font-size:clamp(22px,2.8vw,28px)}
+.fd-body .occasions{font-size:13px;color:var(--champagne);font-weight:600;margin-top:8px}
+.fd-body .desc{font-size:14.5px;color:var(--muted);line-height:1.7;margin-top:14px;max-width:520px}
+.fd-notice{background:var(--cream-2);border-radius:4px;padding:16px 18px;margin-top:18px;font-size:13px;color:var(--muted);line-height:1.6}
+.fd-inclusions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.fd-tag{font-size:11.5px;letter-spacing:.3px;color:var(--ink-soft);background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+@media (max-width:760px){ .fd-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<section class="page-hero">
+  <div class="eyebrow">Nos formules</div>
+  <h1>Des formules pour chaque type d'événement</h1>
+  <p>Chaque formule est réalisée par un traiteur de notre réseau de partenaires. Menu, inclusions et prix vous sont confirmés dans votre proposition personnalisée.</p>
+</section>
+
+<section>
+  <div id="formules-list" style="max-width:1000px;margin:0 auto"></div>
+</section>
+
+<footer>
+  <div id="site-footer"></div>
+</footer>
+
+<script src="/shared/site-chrome.js"></script>
+<script src="./formules-data.js"></script>
+<script>
+const INCLUSION_CATEGORIES = ['Repas', 'Personnel', 'Livraison', 'Vaisselle et équipements'];
+
+function renderFormulesList(){
+  const el = document.getElementById('formules-list');
+  el.innerHTML = FORMULES.map(f => `
+    <div class="formule-detail reveal" id="${f.id}">
+      <div class="fd-grid">
+        <div class="fd-photo">
+          ${f.photo ? `<img src="${f.photo}" alt="${f.name} — photo de référence" loading="lazy">` : `
+            <div>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="margin-bottom:8px"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5.5-5.5a2 2 0 00-2.8 0L3 19"/></svg>
+              <div>Photo à fournir</div>
+            </div>`}
+        </div>
+        <div class="fd-body">
+          <span class="f-status">Proposition personnalisée</span>
+          <h2>${f.name}</h2>
+          <div class="occasions">${f.occasions}</div>
+          <p class="desc">${f.short}</p>
+          <div class="fd-inclusions">
+            ${INCLUSION_CATEGORIES.map(c => `<span class="fd-tag">${c} — à confirmer</span>`).join('')}
+          </div>
+          <div class="fd-notice">Le menu, les inclusions et le prix de cette formule sont confirmés avec le traiteur partenaire retenu pour votre événement — aucun tarif n'est affiché tant qu'il n'a pas été validé. Minimum de commande à confirmer selon le partenaire.</div>
+          <div style="margin-top:22px">
+            <a class="btn" href="/soumission?formule=${f.id}">Demander une proposition pour cette formule</a>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+  initReveal();
+}
+renderSiteChrome('formules');
+renderFormulesList();
+</script>
+</body>
+</html>

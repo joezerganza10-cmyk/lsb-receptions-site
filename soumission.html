@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demander une soumission | LSB Réceptions</title>
+<meta name="description" content="Décrivez votre événement en quelques étapes et recevez une proposition personnalisée de LSB Réceptions et de notre réseau de traiteurs partenaires.">
+<link rel="canonical" href="https://lsbreceptions.ca/soumission">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/site-base.css">
+<style>
+.page-hero{background:var(--panel-dark);color:var(--cream);padding:48px clamp(20px,5vw,56px) 40px;text-align:center}
+.page-hero h1{font-size:clamp(24px,3.4vw,34px)}
+.page-hero p{max-width:560px;margin:14px auto 0;color:#dccbbb;font-size:14px;line-height:1.6}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+@media (max-width:560px){ .choice-grid{grid-template-columns:1fr} }
+.choice-card{border:1px solid var(--line);background:#fff;border-radius:4px;padding:13px 15px;cursor:pointer;font-size:12.5px;color:var(--ink);text-align:left}
+.choice-card.is-active{border-color:var(--bordeaux);background:rgba(123,30,44,.05)}
+</style>
+</head>
+<body>
+
+<nav id="site-nav"></nav>
+
+<section class="page-hero">
+  <div class="eyebrow">Demande de soumission</div>
+  <h1>Décrivez votre événement</h1>
+  <p>Trois courtes étapes. Vous verrez un récapitulatif avant d'envoyer votre demande.</p>
+</section>
+
+<section>
+  <div class="form-wrap">
+    <div class="step-indicator" id="step-indicator"></div>
+
+    <form id="quote-form" novalidate>
+      <div id="form-error-slot"></div>
+      <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+        <label for="website">Laisser vide</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- ============ ÉTAPE 1 — L'ÉVÉNEMENT ============ -->
+      <div class="form-step" data-step="1">
+        <div class="field">
+          <label for="eventType">Type d'événement *</label>
+          <select id="eventType">
+            <option value="" disabled selected>Sélectionnez…</option>
+            <option value="Mariage">Mariage</option>
+            <option value="Anniversaire">Anniversaire / célébration</option>
+            <option value="Corporatif">Événement d'entreprise / formation</option>
+            <option value="Communautaire">Activité communautaire / associative</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <label class="check-row">
+          <input type="checkbox" id="date-tbd">
+          <span>Ma date n'est pas encore confirmée</span>
+        </label>
+        <div class="field" id="event-date-field">
+          <label for="eventDate">Date souhaitée *</label>
+          <input type="date" id="eventDate">
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="city">Ville *</label><input type="text" id="city" placeholder="Ex. Sherbrooke"></div>
+          <div class="field"><label for="venue">Lieu <span class="hint">(facultatif)</span></label><input type="text" id="venue" placeholder="Nom du lieu, si connu"></div>
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="guestCount">Nombre approximatif d'invités *</label><input type="number" id="guestCount" min="1" max="2000"></div>
+          <div class="field"><label for="mealTime">Heure souhaitée du repas <span class="hint">(facultatif)</span></label><input type="time" id="mealTime"></div>
+        </div>
+        <div class="step-nav">
+          <span></span>
+          <button type="button" class="btn" data-next>Continuer</button>
+        </div>
+      </div>
+
+      <!-- ============ ÉTAPE 2 — LA PRESTATION ============ -->
+      <div class="form-step" data-step="2">
+        <div class="field">
+          <label for="formule">Formule souhaitée <span class="hint">(facultatif)</span></label>
+          <select id="formule">
+            <option value="">Je ne sais pas encore / proposez-moi une option</option>
+            <option value="buffets">Buffets chauds et froids</option>
+            <option value="boites-repas">Boîtes-repas</option>
+            <option value="cocktails">Cocktails et bouchées</option>
+            <option value="repas-service">Repas avec service</option>
+            <option value="dejeuners">Déjeuners et pauses-café</option>
+          </select>
+        </div>
+        <div class="field"><label for="preferences">Préférences culinaires <span class="hint">(facultatif)</span></label><textarea id="preferences" placeholder="Cuisines, styles ou plats que vous aimeriez retrouver"></textarea></div>
+        <div class="field"><label for="budget">Budget indicatif <span class="hint">(facultatif, par personne ou global)</span></label><input type="text" id="budget" placeholder="Ex. 25 $ / personne, ou 2000 $ au total"></div>
+        <div class="field">
+          <label>Services souhaités <span class="hint">(facultatif)</span></label>
+          <label class="check-row"><input type="checkbox" id="svc-livraison"><span>Livraison</span></label>
+          <label class="check-row"><input type="checkbox" id="svc-installation"><span>Installation sur place</span></label>
+          <label class="check-row"><input type="checkbox" id="svc-personnel"><span>Personnel de service</span></label>
+        </div>
+        <div class="field"><label for="allergies">Besoins alimentaires ou allergies à signaler <span class="hint">(facultatif)</span></label><textarea id="allergies" placeholder="Ex. 2 repas végétariens, 1 sans gluten…"></textarea></div>
+        <p style="font-size:11.5px;color:var(--faint);margin:-6px 0 20px">Ces besoins sont transmis au traiteur partenaire pressenti, qui confirme ce qu'il peut offrir — aucune absence d'allergène n'est garantie avant cette confirmation.</p>
+        <div class="step-nav">
+          <button type="button" class="btn-outline" data-back>Retour</button>
+          <button type="button" class="btn" data-next>Continuer</button>
+        </div>
+      </div>
+
+      <!-- ============ ÉTAPE 3 — COORDONNÉES ============ -->
+      <div class="form-step" data-step="3">
+        <div class="field-grid">
+          <div class="field"><label for="name">Prénom et nom *</label><input type="text" id="name" autocomplete="name"></div>
+          <div class="field"><label for="organization">Organisation <span class="hint">(facultatif)</span></label><input type="text" id="organization" autocomplete="organization"></div>
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="email">Courriel *</label><input type="email" id="email" autocomplete="email"></div>
+          <div class="field"><label for="phone">Téléphone *</label><input type="tel" id="phone" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="comments">Commentaires <span class="hint">(facultatif)</span></label><textarea id="comments"></textarea></div>
+
+        <div class="recap" id="recap"></div>
+
+        <label class="check-row">
+          <input type="checkbox" id="consent" required>
+          <span>Je comprends que cette demande est une demande de soumission, pas une réservation confirmée, et que mes renseignements seront transmis à un traiteur partenaire uniquement après confirmation du choix retenu.</span>
+        </label>
+
+        <div class="step-nav">
+          <button type="button" class="btn-outline" data-back>Retour</button>
+          <button type="submit" class="btn" id="submit-btn">Envoyer ma demande de soumission</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="quote-success" style="display:none">
+      <div class="confirm-screen">
+        <div class="confirm-check">✓</div>
+        <h3 style="font-family:'Fraunces',serif">Votre demande est envoyée.</h3>
+        <p style="color:var(--muted);margin-top:10px">Merci ! Notre équipe prépare une proposition avec un traiteur partenaire adapté et vous contactera directement. Cette référence confirme la réception de votre demande — pas une réservation.</p>
+        <div class="confirm-ref" id="quote-ref"></div>
+        <div style="margin-top:26px">
+          <a class="btn" href="/">Retour à l'accueil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div id="site-footer"></div>
+</footer>
+
+<script src="/shared/site-chrome.js"></script>
+<script>
+const TOTAL_STEPS = 3;
+let currentStep = 1;
+const STEP_LABELS = ["L'événement", 'La prestation', 'Vos coordonnées'];
+
+function renderStepIndicator(){
+  const el = document.getElementById('step-indicator');
+  el.innerHTML = STEP_LABELS.map((label, i) => {
+    const n = i + 1;
+    const cls = n < currentStep ? 'is-done' : (n === currentStep ? 'is-active' : '');
+    const sep = n < TOTAL_STEPS ? '<span class="step-sep"></span>' : '';
+    return `<div class="step-dot ${cls}"><span class="n">${n < currentStep ? '✓' : n}</span>${label}</div>${sep}`;
+  }).join('');
+}
+
+function showStep(n){
+  currentStep = n;
+  document.querySelectorAll('.form-step').forEach(s => s.classList.toggle('is-active', parseInt(s.dataset.step,10) === n));
+  renderStepIndicator();
+  if (n === 3) renderRecap();
+  window.scrollTo({ top: document.getElementById('quote-form').offsetTop - 100, behavior: 'smooth' });
+}
+
+function showError(msg){
+  const errorSlot = document.getElementById('form-error-slot');
+  errorSlot.innerHTML = `<div class="error-box">${msg}</div>`;
+  errorSlot.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+function clearError(){ document.getElementById('form-error-slot').innerHTML = ''; }
+
+function validateStep1(){
+  const eventType = document.getElementById('eventType').value;
+  const dateTbd = document.getElementById('date-tbd').checked;
+  const eventDate = document.getElementById('eventDate').value;
+  const city = document.getElementById('city').value.trim();
+  const guestCount = document.getElementById('guestCount').value;
+  if (!eventType){ showError("Merci de choisir le type d'événement."); return false; }
+  if (!dateTbd && !eventDate){ showError('Merci d\'indiquer une date, ou de cocher « date à confirmer ».'); return false; }
+  if (!city){ showError('Merci d\'indiquer la ville.'); return false; }
+  if (!guestCount || parseInt(guestCount,10) < 1){ showError("Merci d'indiquer le nombre approximatif d'invités."); return false; }
+  return true;
+}
+function validateStep3(){
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const consent = document.getElementById('consent').checked;
+  if (!name){ showError('Merci d\'indiquer votre nom.'); return false; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showError('Merci d\'entrer une adresse courriel valide.'); return false; }
+  if (!phone){ showError('Merci d\'indiquer votre téléphone.'); return false; }
+  if (!consent){ showError('Merci de cocher la case de consentement.'); return false; }
+  return true;
+}
+
+document.getElementById('date-tbd').addEventListener('change', (e) => {
+  const field = document.getElementById('event-date-field');
+  field.style.display = e.target.checked ? 'none' : 'block';
+  if (e.target.checked) document.getElementById('eventDate').value = '';
+});
+
+document.querySelectorAll('[data-next]').forEach(btn => btn.addEventListener('click', () => {
+  clearError();
+  if (currentStep === 1 && !validateStep1()) return;
+  showStep(currentStep + 1);
+}));
+document.querySelectorAll('[data-back]').forEach(btn => btn.addEventListener('click', () => {
+  clearError();
+  showStep(currentStep - 1);
+}));
+
+const FORMULE_LABELS = {
+  'buffets': 'Buffets chauds et froids', 'boites-repas': 'Boîtes-repas', 'cocktails': 'Cocktails et bouchées',
+  'repas-service': 'Repas avec service', 'dejeuners': 'Déjeuners et pauses-café',
+};
+function recapRow(label, value){
+  return `<div class="recap-row"><span class="rl">${label}</span><span class="rv">${value || '—'}</span></div>`;
+}
+function renderRecap(){
+  const el = document.getElementById('recap');
+  const dateTbd = document.getElementById('date-tbd').checked;
+  const services = [];
+  if (document.getElementById('svc-livraison').checked) services.push('Livraison');
+  if (document.getElementById('svc-installation').checked) services.push('Installation');
+  if (document.getElementById('svc-personnel').checked) services.push('Personnel de service');
+  const formuleVal = document.getElementById('formule').value;
+  el.innerHTML = [
+    recapRow("Type d'événement", document.getElementById('eventType').value),
+    recapRow('Date', dateTbd ? 'À confirmer' : document.getElementById('eventDate').value),
+    recapRow('Ville', document.getElementById('city').value),
+    recapRow('Invités (approx.)', document.getElementById('guestCount').value),
+    recapRow('Formule souhaitée', formuleVal ? FORMULE_LABELS[formuleVal] : 'À proposer'),
+    recapRow('Services', services.join(', ') || 'Aucun sélectionné'),
+  ].join('');
+}
+
+function todayISO(){ const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+document.getElementById('eventDate').setAttribute('min', todayISO());
+
+const FORM_LOADED_AT = Date.now();
+
+document.getElementById('quote-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearError();
+  if (!validateStep3()) return;
+
+  const services = [];
+  if (document.getElementById('svc-livraison').checked) services.push('Livraison');
+  if (document.getElementById('svc-installation').checked) services.push('Installation');
+  if (document.getElementById('svc-personnel').checked) services.push('Personnel de service');
+
+  const payload = {
+    eventType: document.getElementById('eventType').value,
+    dateTbd: document.getElementById('date-tbd').checked,
+    eventDate: document.getElementById('eventDate').value,
+    city: document.getElementById('city').value.trim(),
+    venue: document.getElementById('venue').value.trim(),
+    guestCount: document.getElementById('guestCount').value,
+    mealTime: document.getElementById('mealTime').value,
+    formule: document.getElementById('formule').value,
+    preferences: document.getElementById('preferences').value.trim(),
+    budget: document.getElementById('budget').value.trim(),
+    services,
+    allergies: document.getElementById('allergies').value.trim(),
+    name: document.getElementById('name').value.trim(),
+    organization: document.getElementById('organization').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    comments: document.getElementById('comments').value.trim(),
+    website: document.getElementById('website').value,
+    formLoadedAt: FORM_LOADED_AT,
+  };
+
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Envoi…';
+
+  try {
+    const res = await fetch('/.netlify/functions/quote-request', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) throw new Error(data.message || "Erreur lors de l'envoi.");
+
+    document.getElementById('quote-form').style.display = 'none';
+    document.getElementById('step-indicator').style.display = 'none';
+    document.getElementById('quote-ref').textContent = `Référence : ${data.quoteRef || '—'}`;
+    document.getElementById('quote-success').style.display = 'block';
+    document.getElementById('quote-success').scrollIntoView({ behavior:'smooth', block:'start' });
+  } catch (err) {
+    console.error('[soumission:submit]', err);
+    showError(err.message || 'Une erreur est survenue lors de l\'envoi. Vos réponses sont conservées — vous pouvez réessayer.');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Envoyer ma demande de soumission';
+  }
+});
+
+function applyUrlParams(){
+  const params = new URLSearchParams(window.location.search);
+  const formule = params.get('formule');
+  if (formule) document.getElementById('formule').value = formule;
+  const eventType = params.get('eventType');
+  if (eventType) document.getElementById('eventType').value = eventType;
+}
+
+renderSiteChrome('soumission');
+applyUrlParams();
+showStep(1);
+</script>
+</body>
+</html>
