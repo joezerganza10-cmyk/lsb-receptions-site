@@ -55,22 +55,46 @@
 @media (max-width:820px){ .agency-grid{grid-template-columns:1fr} .agency-photo{max-width:320px;margin:0 auto} }
 
 /* ---- Nos spécialités ---- */
-.specialites-section{position:relative;padding:clamp(70px,10vw,120px) clamp(20px,5vw,56px);background:#1c1712;overflow:hidden}
-.specialites-section::before{content:'';position:absolute;inset:0;background:url('ambiance-buffet.jpg') center 38%/cover no-repeat;filter:saturate(.5) brightness(.42)}
-.specialites-section::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.6) 0%,rgba(13,10,7,.8) 100%)}
+.specialites-section{position:relative;padding:clamp(72px,10vw,118px) clamp(20px,5vw,56px) clamp(90px,11vw,130px);background:#1c1712;overflow:hidden}
+.specialites-section::before{content:'';position:absolute;inset:0;background:url('specialites-cuisine.jpg') center 32%/cover no-repeat;filter:saturate(.92) brightness(.5)}
+.specialites-section::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.5) 0%,rgba(10,8,6,.72) 100%)}
 .specialites-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;text-align:center}
-.specialites-title{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,4.6vw,52px);letter-spacing:6px;color:#B5A06A;text-transform:uppercase;margin:0}
-.specialites-cta{margin:clamp(26px,4vw,36px) 0 clamp(54px,7vw,78px)}
+.specialites-icon{display:flex;justify-content:center;margin-bottom:18px;color:#B5A06A}
+.specialites-icon svg{animation:specialitesFloat 3.6s ease-in-out infinite}
+.specialites-eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:6px}
+.specialites-eyebrow span{font-family:'Work Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:6px;color:#F3E8D6}
+.specialites-eyebrow i{display:block;width:clamp(26px,4vw,52px);height:1px;background:#B5A06A;font-style:normal}
+.specialites-title{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(34px,5.6vw,64px);letter-spacing:4px;color:#B5A06A;text-transform:uppercase;margin:0;line-height:1}
+.specialites-subtitle{font-family:'Fraunces',serif;font-size:clamp(14.5px,1.7vw,18px);color:#F3E8D6;margin:14px 0 0}
+.specialites-cta{margin:clamp(26px,4vw,34px) 0 clamp(58px,7.5vw,84px)}
 .btn-ivory{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:#F3E3C3;color:#8f6f2e;padding:17px 36px;font-size:12.5px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700;border-radius:3px;font-family:'Work Sans',sans-serif;transition:background .2s,transform .2s,box-shadow .2s}
 .btn-ivory:hover{background:#fff;transform:translateY(-1px);box-shadow:0 14px 30px -14px rgba(0,0,0,.55)}
-.specialites-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(30px,5vw,60px);max-width:1000px;margin:0 auto}
-.specialite-col{display:flex;flex-direction:column;align-items:center}
-.specialite-num{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(34px,4.4vw,48px);color:#fff;line-height:1}
+.btn-ivory svg{transition:transform .25s ease}
+.btn-ivory:hover svg{transform:translateX(4px)}
+.specialites-grid{display:flex;justify-content:center;max-width:1020px;margin:0 auto}
+.specialite-col{flex:1;max-width:320px;display:flex;flex-direction:column;align-items:center;padding:0 clamp(18px,3vw,38px);position:relative;transition:transform .3s ease}
+.specialite-col:hover{transform:translateY(-6px)}
+.specialite-col+.specialite-col{border-left:1px solid rgba(181,160,106,.32)}
+.specialite-col+.specialite-col::before{content:'';position:absolute;left:-5px;top:133px;width:9px;height:9px;background:#B5A06A;transform:rotate(45deg)}
+.specialite-icon{width:64px;height:64px;border:1.5px solid #B5A06A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#B5A06A;margin-bottom:18px;transition:border-color .25s ease,transform .25s ease;animation:specialitesFloat 3.6s ease-in-out infinite}
+.specialite-col:nth-child(2) .specialite-icon{animation-delay:.3s}
+.specialite-col:nth-child(3) .specialite-icon{animation-delay:.6s}
+.specialite-col:hover .specialite-icon{border-color:#fff;transform:scale(1.07)}
+.specialite-num{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(34px,4.4vw,46px);color:#fff;line-height:1}
 .specialite-rule{width:40px;height:2px;background:#B5A06A;margin:14px 0 18px}
-.specialite-col h3{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(15px,1.7vw,18px);letter-spacing:1.6px;text-transform:uppercase;color:#B5A06A;margin:0 0 14px}
-.specialite-col p{font-size:13.5px;line-height:1.75;color:#D9C8A3;margin:0;max-width:300px}
+.specialite-col h3{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(15px,1.7vw,18px);letter-spacing:1.6px;text-transform:uppercase;color:#B5A06A;margin:0 0 14px;line-height:1.3;transition:color .25s ease}
+.specialite-col:hover h3{color:#F3E3C3}
+.specialite-col p{font-size:13.5px;line-height:1.75;color:#D9C8A3;margin:0;max-width:280px}
+.specialites-wave{position:absolute;left:0;bottom:-1px;width:100%;height:clamp(32px,5.5vw,64px);z-index:2}
+@keyframes specialitesFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){
+  .specialites-icon svg,.specialite-icon{animation:none}
+}
 @media (max-width:820px){
-  .specialites-grid{grid-template-columns:1fr;gap:46px;max-width:360px;margin:0 auto}
+  .specialites-grid{flex-direction:column;align-items:center;gap:48px;max-width:340px;margin:0 auto}
+  .specialite-col{max-width:none;padding:0}
+  .specialite-col+.specialite-col{border-left:none;padding-top:0}
+  .specialite-col+.specialite-col::before{display:none}
 }
 </style>
 </head>
@@ -106,7 +130,14 @@
 <!-- ============ NOS SPÉCIALITÉS ============ -->
 <section class="specialites-section">
   <div class="specialites-content">
-    <h2 class="specialites-title reveal">Nos spécialités</h2>
+    <div class="specialites-icon reveal" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10M8 21v-4.2M16 21v-4.2"/><path d="M6.2 11.2A4 4 0 0 1 8 3.6 4 4 0 0 1 12 2a4 4 0 0 1 4 1.6 4 4 0 0 1 1.8 7.6c-.2 1.9-.4 3.2-.8 4.8H7c-.4-1.6-.6-2.9-.8-4.8Z"/></svg>
+    </div>
+    <div class="specialites-eyebrow reveal">
+      <i></i><span>NOS</span><i></i>
+    </div>
+    <h2 class="specialites-title reveal">Spécialités</h2>
+    <p class="specialites-subtitle reveal">Une expérience culinaire pensée pour vos événements.</p>
     <div class="specialites-cta reveal">
       <a class="btn-ivory" href="/formules">
         <span>Découvrez nos formules</span>
@@ -115,25 +146,38 @@
     </div>
     <div class="specialites-grid">
       <div class="specialite-col reveal">
+        <div class="specialite-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16"/><path d="M5 18a7 7 0 0 1 14 0"/><path d="M12 7V4.6"/><circle cx="12" cy="3.4" r="1"/></svg>
+        </div>
         <div class="specialite-num">01</div>
         <div class="specialite-rule"></div>
-        <h3>Buffets de réception</h3>
+        <h3>Buffets<br>de réception</h3>
         <p>Des buffets généreux et soigneusement présentés pour vos mariages, anniversaires, événements corporatifs et célébrations. Des formules adaptées à vos invités et à l'ambiance de votre événement.</p>
       </div>
       <div class="specialite-col reveal reveal-delay-1">
+        <div class="specialite-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="19" y2="5"/><circle cx="8.6" cy="15.4" r="2.3"/><circle cx="15.4" cy="8.6" r="2.3"/></svg>
+        </div>
         <div class="specialite-num">02</div>
         <div class="specialite-rule"></div>
-        <h3>Cocktails et bouchées</h3>
+        <h3>Cocktails<br>et bouchées</h3>
         <p>Des bouchées savoureuses et des présentations élégantes pour vos cocktails dînatoires, vos 5 à 7 et vos réceptions professionnelles. Une formule conviviale qui favorise les échanges.</p>
       </div>
       <div class="specialite-col reveal reveal-delay-2">
+        <div class="specialite-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5.4"/><path d="M4.4 4v5.4M3.2 4v5.4M5.6 4v5.4M4.4 9.4V20"/><path d="M19.6 4c0 3.2-1.8 3.4-1.8 6v10"/></svg>
+        </div>
         <div class="specialite-num">03</div>
         <div class="specialite-rule"></div>
-        <h3>Repas servis</h3>
+        <h3>Repas<br>servis</h3>
         <p>Des repas soigneusement préparés et servis pour vos galas, banquets, soupers d'entreprise et grandes occasions. Une expérience culinaire pensée pour accompagner vos moments importants.</p>
       </div>
     </div>
   </div>
+  <svg class="specialites-wave" viewBox="0 0 1600 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,60 C420,2 1180,2 1600,60 L1600,60 L0,60 Z" fill="#F3E3C3"/>
+    <path d="M0,60 C420,2 1180,2 1600,60" fill="none" stroke="#B5A06A" stroke-width="2"/>
+  </svg>
 </section>
 
 <!-- ============ OCCASIONS ============ -->
