@@ -50,23 +50,23 @@ h1,h2,h3{font-family:'Fraunces',serif;font-weight:560;margin:0;text-wrap:balance
 
 /* ============ NAV (deux barres : menu doré + coordonnées anthracite) ============ */
 nav{position:sticky;top:0;z-index:100;display:flex;flex-direction:column;overflow:visible}
-.nav-top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px clamp(20px,5vw,56px);background:#ad9a65;border-bottom:1px solid rgba(0,0,0,.1)}
+.nav-top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px clamp(20px,5vw,56px);background:#ad9a65;border-bottom:1px solid rgba(0,0,0,.1)}
 .nav-contact-bar{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,36px);padding:7px clamp(20px,5vw,56px);background:#262626;font-size:11.5px;letter-spacing:.3px;flex-wrap:wrap}
 .nav-contact-item{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#d8c493}
 .nav-contact-item svg{flex-shrink:0;opacity:.85}
 a.nav-contact-item:hover{color:#fff}
 .logo{position:relative;display:block;width:128px;height:50px;flex-shrink:0}
-.logo img{position:absolute;left:0;top:-22px;height:148px;width:auto;z-index:20;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45)) drop-shadow(0 8px 18px rgba(0,0,0,.35))}
+.logo img{position:absolute;left:0;top:-32px;height:148px;width:auto;z-index:20;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45)) drop-shadow(0 8px 18px rgba(0,0,0,.35))}
 @media (max-width:860px){
   .logo{width:84px;height:44px}
-  .logo img{height:96px;top:-14px}
+  .logo img{height:96px;top:-24px}
 }
 .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:4px;background:none;border:none;cursor:pointer;padding:8px;margin-left:auto}
 .nav-toggle span{width:20px;height:1.5px;background:#2a2420;display:block}
 .nav-links{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);flex-wrap:nowrap;font-size:12.5px}
 .nav-links>a{text-decoration:none;color:#2a2420;border-bottom:1px solid transparent;padding-bottom:3px;white-space:nowrap;font-weight:600;letter-spacing:.4px;text-transform:uppercase;font-size:12px}
 .nav-links>a:hover,.nav-links>a.is-current{color:var(--bordeaux);border-color:var(--bordeaux)}
-.nav-cta{white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.nav-cta{white-space:nowrap;display:inline-flex;align-items:center;gap:7px;color:#FFF9EF}
 @media (max-width:980px){ .nav-cta{display:none} }
 @media (max-width:860px){
   .nav-toggle{display:flex}
