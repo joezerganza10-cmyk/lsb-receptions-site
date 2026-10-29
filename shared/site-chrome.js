@@ -8,9 +8,9 @@ const BRAND = {
   fullName: 'Les Saveurs Bantoues',
   tagline: 'Agence de services traiteurs',
   logo: '/logo-lsb-receptions.png',
-  phoneDisplay: '(819) 555-0142',
-  phoneHref: 'tel:+18195550142',
-  email: 'reservations@lsbreceptions.ca',
+  phoneDisplay: '(819) 678-9242',
+  phoneHref: 'tel:+18196789242',
+  email: 'info@lsbreceptions.ca',
   region: "L'Estrie, avec un réseau en développement au Québec",
 };
 
@@ -28,13 +28,19 @@ function renderSiteChrome(activeKey){
 
   if (navEl){
     navEl.innerHTML = `
-      <a class="logo" href="/"><img src="${BRAND.logo}" alt="${BRAND.name}"></a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-links" id="nav-links">
-        ${NAV_ITEMS.map(i => `<a href="${i.href}"${i.key === activeKey ? ' class="is-current"' : ''}>${i.label}</a>`).join('')}
-        <a href="/soumission" class="btn btn-sm nav-cta">Demander une soumission</a>
+      <div class="nav-top">
+        <a class="logo" href="/"><img src="${BRAND.logo}" alt="${BRAND.name}"></a>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+          ${NAV_ITEMS.map(i => `<a href="${i.href}"${i.key === activeKey ? ' class="is-current"' : ''}>${i.label}</a>`).join('')}
+          <a href="/soumission" class="btn btn-sm nav-cta">Demander une soumission</a>
+        </div>
+      </div>
+      <div class="nav-contact-bar">
+        <a href="${BRAND.phoneHref}">${BRAND.phoneDisplay}</a>
+        <a href="mailto:${BRAND.email}">${BRAND.email}</a>
       </div>`;
     const toggle = document.getElementById('nav-toggle');
     const links = document.getElementById('nav-links');
