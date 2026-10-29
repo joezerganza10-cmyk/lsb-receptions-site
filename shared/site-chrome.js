@@ -12,6 +12,7 @@ const BRAND = {
   phoneHref: 'tel:+18196789242',
   email: 'info@lsbreceptions.ca',
   region: "L'Estrie, avec un réseau en développement au Québec",
+  cityRegion: 'Sherbrooke, QC',
 };
 
 const NAV_ITEMS = [
@@ -35,12 +36,25 @@ function renderSiteChrome(activeKey){
         </button>
         <div class="nav-links" id="nav-links">
           ${NAV_ITEMS.map(i => `<a href="${i.href}"${i.key === activeKey ? ' class="is-current"' : ''}>${i.label}</a>`).join('')}
-          <a href="/soumission" class="btn btn-sm nav-cta">Demander une soumission</a>
+          <a href="/soumission" class="btn btn-sm nav-cta">
+            <span>Demander une soumission</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </div>
       <div class="nav-contact-bar">
-        <a href="${BRAND.phoneHref}">${BRAND.phoneDisplay}</a>
-        <a href="mailto:${BRAND.email}">${BRAND.email}</a>
+        <span class="nav-contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          ${BRAND.cityRegion}
+        </span>
+        <a href="${BRAND.phoneHref}" class="nav-contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7.9 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.3z"/></svg>
+          ${BRAND.phoneDisplay}
+        </a>
+        <a href="mailto:${BRAND.email}" class="nav-contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          ${BRAND.email}
+        </a>
       </div>`;
     const toggle = document.getElementById('nav-toggle');
     const links = document.getElementById('nav-links');
