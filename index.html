@@ -23,20 +23,24 @@
 }
 </script>
 <style>
-.hero{position:relative;background:var(--panel-dark);color:var(--cream)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:stretch;min-height:min(70vh,600px)}
-.hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:44px clamp(24px,6vw,64px);max-width:560px}
-.hero-copy h1{font-size:clamp(28px,3.6vw,44px);line-height:1.12}
-.hero-copy p.lead{font-size:clamp(14.5px,1.4vw,16.5px);color:#dccbbb;line-height:1.6;max-width:460px;margin:0}
-.hero-copy .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:4px}
-.hero-media{position:relative;min-height:380px;overflow:hidden}
-.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(46,34,27,.55) 0%,rgba(46,34,27,0) 42%)}
-@media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;min-height:0}
-  .hero-media{order:-1;min-height:48vw;max-height:360px}
-  .hero-overlay{background:linear-gradient(0deg,var(--panel-dark) 0%,rgba(46,34,27,0) 40%)}
-  .hero-copy{padding:34px clamp(20px,6vw,40px) 40px;max-width:none}
+/* ---- Hero vidéo pleine largeur ---- */
+.hero-video-section{position:relative;width:100%;height:88vh;min-height:520px;max-height:880px;overflow:hidden;background:var(--panel-dark)}
+.hero-video-section video,.hero-video-section .hero-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-fallback{display:none}
+.hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,17,12,.38) 0%,rgba(23,17,12,.42) 45%,rgba(23,17,12,.72) 100%)}
+.hero-video-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px clamp(20px,5vw,60px)}
+.hero-lsb{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(15px,1.8vw,20px);letter-spacing:9px;color:var(--champagne-soft);text-transform:uppercase;margin:0 0 6px;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.hero-traiteur{font-family:'Fraunces',serif;font-weight:650;font-size:clamp(62px,13vw,208px);line-height:.9;letter-spacing:1px;color:#fff;text-transform:uppercase;text-shadow:0 10px 44px rgba(0,0,0,.5);margin:0}
+.hero-tagline{margin:18px 0 0;font-size:clamp(14px,1.6vw,18px);color:var(--cream);letter-spacing:.3px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.hero-video-cta{margin-top:30px}
+.hero-video-cta .btn{font-size:13px;letter-spacing:1.6px}
+@media (max-width:640px){
+  .hero-video-section{height:92vh;min-height:460px}
+  .hero-traiteur{letter-spacing:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-video-section video{display:none}
+  .hero-fallback{display:block}
 }
 .agency-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,56px);align-items:center;max-width:1100px;margin:0 auto}
 .agency-photo{aspect-ratio:4/5;background:var(--cream-3);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:12px;text-align:center;padding:20px}
@@ -48,21 +52,21 @@
 
 <nav id="site-nav"></nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow">LSB Réceptions</div>
-      <h1>Des saveurs à partager. Un événement à savourer.</h1>
-      <p class="lead">LSB Réceptions vous accompagne dans le choix et l'organisation de votre service traiteur, avec un réseau de partenaires pour vos événements en Estrie.</p>
-      <div class="ctas">
-        <a class="btn" href="/soumission">Demander une soumission</a>
-        <a class="btn-outline on-dark" href="/formules">Découvrir nos formules</a>
-      </div>
-    </div>
-    <div class="hero-media">
-      <img src="ambiance-canapes.jpg" alt="Bouchées et canapés présentés pour un cocktail — photo de référence" fetchpriority="high">
-      <div class="hero-overlay"></div>
+<!-- ============ HERO VIDÉO ============ -->
+<section class="hero-video-section">
+  <video autoplay muted loop playsinline poster="hero-poster.jpg" aria-hidden="true">
+    <source src="hero-video.mp4" type="video/mp4">
+  </video>
+  <img class="hero-fallback" src="hero-poster.jpg" alt="Steak grillé sur feu vif — photo de référence">
+  <div class="hero-video-overlay"></div>
+  <div class="hero-video-content">
+    <h1 style="margin:0">
+      <span class="hero-lsb">LSB</span>
+      <span class="hero-traiteur">Traiteur</span>
+    </h1>
+    <p class="hero-tagline">Des saveurs qui marquent les esprits.</p>
+    <div class="hero-video-cta">
+      <a class="btn" href="/soumission">Demander une soumission</a>
     </div>
   </div>
 </section>
@@ -207,9 +211,19 @@ function renderFormulesTeaser(){
       </div>
     </div>`).join('');
 }
+function initHeroVideo(){
+  const video = document.querySelector('.hero-video-section video');
+  if (!video) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    video.pause();
+    video.removeAttribute('autoplay');
+  }
+}
+
 renderSiteChrome('accueil');
 renderFormulesTeaser();
 initReveal();
+initHeroVideo();
 </script>
 </body>
 </html>
