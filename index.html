@@ -53,6 +53,25 @@
 .agency-photo{aspect-ratio:4/5;background:var(--cream-3);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:12px;text-align:center;padding:20px}
 .agency-text p{font-size:15px;line-height:1.75;color:var(--muted);margin:16px 0 0;max-width:480px}
 @media (max-width:820px){ .agency-grid{grid-template-columns:1fr} .agency-photo{max-width:320px;margin:0 auto} }
+
+/* ---- Nos spécialités ---- */
+.specialites-section{position:relative;padding:clamp(70px,10vw,120px) clamp(20px,5vw,56px);background:#1c1712;overflow:hidden}
+.specialites-section::before{content:'';position:absolute;inset:0;background:url('ambiance-buffet.jpg') center 38%/cover no-repeat;filter:saturate(.5) brightness(.42)}
+.specialites-section::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.6) 0%,rgba(13,10,7,.8) 100%)}
+.specialites-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;text-align:center}
+.specialites-title{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,4.6vw,52px);letter-spacing:6px;color:#B5A06A;text-transform:uppercase;margin:0}
+.specialites-cta{margin:clamp(26px,4vw,36px) 0 clamp(54px,7vw,78px)}
+.btn-ivory{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:#F3E3C3;color:#8f6f2e;padding:17px 36px;font-size:12.5px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700;border-radius:3px;font-family:'Work Sans',sans-serif;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-ivory:hover{background:#fff;transform:translateY(-1px);box-shadow:0 14px 30px -14px rgba(0,0,0,.55)}
+.specialites-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(30px,5vw,60px);max-width:1000px;margin:0 auto}
+.specialite-col{display:flex;flex-direction:column;align-items:center}
+.specialite-num{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(34px,4.4vw,48px);color:#fff;line-height:1}
+.specialite-rule{width:40px;height:2px;background:#B5A06A;margin:14px 0 18px}
+.specialite-col h3{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(15px,1.7vw,18px);letter-spacing:1.6px;text-transform:uppercase;color:#B5A06A;margin:0 0 14px}
+.specialite-col p{font-size:13.5px;line-height:1.75;color:#D9C8A3;margin:0;max-width:300px}
+@media (max-width:820px){
+  .specialites-grid{grid-template-columns:1fr;gap:46px;max-width:360px;margin:0 auto}
+}
 </style>
 </head>
 <body>
@@ -84,16 +103,36 @@
   <svg class="hero-scroll-cue" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
 </section>
 
-<!-- ============ FORMULES À DÉCOUVRIR ============ -->
-<section>
-  <div class="section-head reveal">
-    <div class="eyebrow">Nos formules</div>
-    <h2>Des formules à découvrir</h2>
-    <p>Les menus précis sont confirmés avec le traiteur partenaire retenu pour votre événement.</p>
-  </div>
-  <div class="card-grid" id="formules-teaser"></div>
-  <div style="text-align:center;margin-top:34px">
-    <a class="btn-outline" href="/formules">Voir toutes les formules</a>
+<!-- ============ NOS SPÉCIALITÉS ============ -->
+<section class="specialites-section">
+  <div class="specialites-content">
+    <h2 class="specialites-title reveal">Nos spécialités</h2>
+    <div class="specialites-cta reveal">
+      <a class="btn-ivory" href="/formules">
+        <span>Découvrez nos formules</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="specialites-grid">
+      <div class="specialite-col reveal">
+        <div class="specialite-num">01</div>
+        <div class="specialite-rule"></div>
+        <h3>Buffets de réception</h3>
+        <p>Des buffets généreux et soigneusement présentés pour vos mariages, anniversaires, événements corporatifs et célébrations. Des formules adaptées à vos invités et à l'ambiance de votre événement.</p>
+      </div>
+      <div class="specialite-col reveal reveal-delay-1">
+        <div class="specialite-num">02</div>
+        <div class="specialite-rule"></div>
+        <h3>Cocktails et bouchées</h3>
+        <p>Des bouchées savoureuses et des présentations élégantes pour vos cocktails dînatoires, vos 5 à 7 et vos réceptions professionnelles. Une formule conviviale qui favorise les échanges.</p>
+      </div>
+      <div class="specialite-col reveal reveal-delay-2">
+        <div class="specialite-num">03</div>
+        <div class="specialite-rule"></div>
+        <h3>Repas servis</h3>
+        <p>Des repas soigneusement préparés et servis pour vos galas, banquets, soupers d'entreprise et grandes occasions. Une expérience culinaire pensée pour accompagner vos moments importants.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -203,27 +242,7 @@
 </footer>
 
 <script src="/shared/site-chrome.js"></script>
-<script src="./formules-data.js"></script>
 <script>
-function renderFormulesTeaser(){
-  const el = document.getElementById('formules-teaser');
-  el.innerHTML = FORMULES.map(f => `
-    <div class="f-card">
-      <div class="f-photo">
-        ${f.photo ? `<img src="${f.photo}" alt="${f.name} — photo de référence" loading="lazy">` : `
-          <div class="f-photo-placeholder">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5.5-5.5a2 2 0 00-2.8 0L3 19"/></svg>
-            <span>Photo à fournir</span>
-          </div>`}
-      </div>
-      <div class="f-body">
-        <span class="f-status">Proposition personnalisée</span>
-        <h3>${f.name}</h3>
-        <p class="desc">${f.short}</p>
-        <a class="btn-outline btn-sm f-cta" href="/soumission?formule=${f.id}">Cette formule m'intéresse</a>
-      </div>
-    </div>`).join('');
-}
 function initHeroVideo(){
   const video = document.querySelector('.hero-video-section video');
   if (!video) return;
@@ -234,7 +253,6 @@ function initHeroVideo(){
 }
 
 renderSiteChrome('accueil');
-renderFormulesTeaser();
 initReveal();
 initHeroVideo();
 </script>
