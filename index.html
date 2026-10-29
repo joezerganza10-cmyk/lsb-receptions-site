@@ -10,7 +10,7 @@
 <meta property="og:title" content="LSB Réceptions">
 <meta property="og:description" content="Une agence de services traiteurs en Estrie — buffets, cocktails, boîtes-repas et plus, avec un réseau de traiteurs partenaires.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/shared/site-base.css">
 <script type="application/ld+json">
 {
@@ -29,14 +29,16 @@
 .hero-fallback{display:none}
 .hero-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,17,12,.38) 0%,rgba(23,17,12,.42) 45%,rgba(23,17,12,.72) 100%)}
 .hero-video-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px clamp(20px,5vw,60px)}
-.hero-lsb{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(15px,1.8vw,20px);letter-spacing:9px;color:var(--champagne-soft);text-transform:uppercase;margin:0 0 6px;text-shadow:0 2px 14px rgba(0,0,0,.5)}
-.hero-traiteur{font-family:'Fraunces',serif;font-weight:650;font-size:clamp(62px,13vw,208px);line-height:.9;letter-spacing:1px;color:#fff;text-transform:uppercase;text-shadow:0 10px 44px rgba(0,0,0,.5);margin:0}
-.hero-tagline{margin:18px 0 0;font-size:clamp(14px,1.6vw,18px);color:var(--cream);letter-spacing:.3px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
-.hero-video-cta{margin-top:30px}
+.hero-wordmark{display:flex;flex-direction:column;align-items:flex-start;width:fit-content;margin:0 auto}
+.hero-eyebrow-word{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(16px,2.6vw,30px);letter-spacing:7px;color:#fff;text-transform:uppercase;line-height:1;margin:0 0 clamp(2px,.6vw,8px);text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.hero-main-word{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(100px,22vw,340px);line-height:.82;letter-spacing:1px;color:#fdfaf3;text-transform:uppercase;text-shadow:0 10px 50px rgba(0,0,0,.55);margin:0}
+.hero-tagline{margin:clamp(14px,2.4vw,24px) 0 0;font-size:clamp(14px,1.6vw,18px);color:var(--cream);letter-spacing:.3px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.hero-video-cta{margin-top:clamp(20px,3vw,32px)}
 .hero-video-cta .btn{font-size:13px;letter-spacing:1.6px}
 @media (max-width:640px){
   .hero-video-section{height:92vh;min-height:460px}
-  .hero-traiteur{letter-spacing:0}
+  .hero-eyebrow-word{letter-spacing:4px}
+  .hero-main-word{letter-spacing:0}
 }
 @media (prefers-reduced-motion:reduce){
   .hero-video-section video{display:none}
@@ -61,8 +63,10 @@
   <div class="hero-video-overlay"></div>
   <div class="hero-video-content">
     <h1 style="margin:0">
-      <span class="hero-lsb">LSB</span>
-      <span class="hero-traiteur">Traiteur</span>
+      <span class="hero-wordmark">
+        <span class="hero-eyebrow-word">Traiteur</span>
+        <span class="hero-main-word">LSB</span>
+      </span>
     </h1>
     <p class="hero-tagline">Des saveurs qui marquent les esprits.</p>
     <div class="hero-video-cta">

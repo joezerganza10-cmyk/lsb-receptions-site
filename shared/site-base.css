@@ -49,9 +49,13 @@ h1,h2,h3{font-family:'Fraunces',serif;font-weight:560;margin:0;text-wrap:balance
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important;transition:none!important} html{scroll-behavior:auto} }
 
 /* ============ NAV ============ */
-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px clamp(20px,5vw,56px);background:rgba(250,246,236,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;white-space:nowrap}
-.logo img{height:42px;width:auto}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px clamp(20px,5vw,56px);background:rgba(250,246,236,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);overflow:visible}
+.logo{position:relative;display:block;width:104px;height:44px;flex-shrink:0}
+.logo img{position:absolute;left:0;top:50%;transform:translateY(-42%);height:104px;width:auto;z-index:5;filter:drop-shadow(0 2px 6px rgba(46,34,27,.18))}
+@media (max-width:860px){
+  .logo{width:80px;height:40px}
+  .logo img{height:80px}
+}
 .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:4px;background:none;border:none;cursor:pointer;padding:8px;margin-left:auto}
 .nav-toggle span{width:20px;height:1.5px;background:var(--ink);display:block}
 .nav-links{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);flex-wrap:nowrap;font-size:13px}
