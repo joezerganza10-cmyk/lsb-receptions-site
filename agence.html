@@ -7,46 +7,121 @@
 <meta name="description" content="LSB Réceptions est une agence de services traiteurs en Estrie qui accompagne ses clients et coordonne les prestations avec un réseau de traiteurs partenaires.">
 <link rel="canonical" href="https://lsbreceptions.ca/agence">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,560;0,9..144,650;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/shared/site-base.css">
 <style>
-.page-hero{background:var(--panel-dark);color:var(--cream);padding:56px clamp(20px,5vw,56px) 44px;text-align:center}
-.page-hero h1{font-size:clamp(26px,3.6vw,38px)}
-.page-hero p{max-width:620px;margin:14px auto 0;color:#dccbbb;font-size:14.5px;line-height:1.6}
-.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;max-width:1080px;margin:0 auto}
-.pillar{background:#fff;border:1px solid var(--line);border-radius:6px;padding:28px 24px}
-.pillar .ic{width:36px;height:36px;border:1px solid var(--bordeaux);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--bordeaux);margin-bottom:14px}
-.pillar h4{font-size:16px;margin-bottom:8px}
-.pillar p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
-.notice{max-width:760px;margin:0 auto;background:var(--cream-2);border-radius:4px;padding:22px 26px;font-size:13px;color:var(--muted);line-height:1.7}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---- Hero logo ---- */
+.agence-hero{position:relative;height:clamp(420px,62vh,620px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000}
+.agence-hero::before{content:'';position:absolute;inset:0;background:url('reservation-cuisine.jpg') center/cover no-repeat;filter:brightness(.5) saturate(1.05)}
+.agence-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.3) 0%,rgba(10,8,6,.55) 100%)}
+.agence-hero-logo{position:relative;z-index:1;width:clamp(260px,30vw,460px)}
+.agence-hero-logo img{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 34px rgba(0,0,0,.5))}
+
+/* ---- Trois engagements ---- */
+.agence-pillars-section{padding:clamp(54px,7vw,80px) clamp(20px,5vw,56px);background:var(--cream)}
+.agence-pillars{display:flex;justify-content:center;max-width:1040px;margin:0 auto}
+.agence-pillar{flex:1;max-width:320px;text-align:center;padding:0 clamp(18px,3vw,40px);transition:transform .3s ease}
+.agence-pillar+.agence-pillar{border-left:1px solid var(--line)}
+.agence-pillar:hover{transform:translateY(-5px)}
+.agence-pillar-icon{width:64px;height:64px;border:1.5px solid #B5A06A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#B5A06A;margin:0 auto 16px;transition:border-color .3s ease,transform .3s ease}
+.agence-pillar:hover .agence-pillar-icon{transform:scale(1.08);border-color:var(--bordeaux)}
+.agence-pillar h3{font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9c7f3e;margin:0 0 10px;transition:color .3s ease}
+.agence-pillar:hover h3{color:var(--bordeaux)}
+.agence-pillar p{font-size:13.5px;line-height:1.7;color:var(--muted);margin:0}
+@media (max-width:820px){
+  .agence-pillars{flex-direction:column;gap:38px;max-width:360px;margin:0 auto}
+  .agence-pillar{max-width:none;padding:0}
+  .agence-pillar+.agence-pillar{border-left:none}
+}
+
+/* ---- Notre territoire ---- */
+.territoire-section{position:relative;padding:clamp(66px,9vw,104px) clamp(20px,5vw,56px) clamp(110px,13vw,150px);overflow:hidden;background:#0d0b08}
+.territoire-section::before{content:'';position:absolute;inset:0;background:url('territoire-estrie.jpg') center/cover no-repeat}
+.territoire-section::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,5,3,.88) 0%,rgba(7,5,3,.58) 42%,rgba(7,5,3,.18) 68%,rgba(7,5,3,.06) 100%)}
+.territoire-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,60px);align-items:center;max-width:1180px;margin:0 auto}
+.territoire-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.territoire-eyebrow i{display:block;width:40px;height:1px;background:#B5A06A;font-style:normal}
+.territoire-eyebrow span{font-family:'Work Sans',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:4px;color:#B5A06A;text-transform:uppercase}
+.territoire-title{font-family:'Fraunces',serif;font-weight:560;font-size:clamp(30px,4.6vw,50px);line-height:1.12;margin:0 0 28px;color:#F7F1E4}
+.territoire-title .gold{color:#C9A96A;font-style:italic;font-weight:500}
+.territoire-facts{display:flex;gap:22px;flex-wrap:wrap}
+.territoire-fact{display:flex;gap:12px;align-items:flex-start;max-width:220px}
+.territoire-fact svg{flex-shrink:0;color:#B5A06A;margin-top:3px}
+.territoire-fact strong{display:block;font-size:13.5px;color:#fff;margin-bottom:3px;font-weight:600}
+.territoire-fact span{font-size:12.5px;color:#cbb99f;line-height:1.5}
+.territoire-fact-sep{width:1px;background:rgba(181,160,106,.3);align-self:stretch}
+.territoire-map-wrap{position:relative;aspect-ratio:1/1;max-width:420px;margin:0 auto;width:100%}
+.territoire-map{width:100%;height:100%;overflow:visible}
+.qc-outline{fill:rgba(20,16,10,.6);stroke:#B5A06A;stroke-width:1.6;stroke-linejoin:round}
+.qc-estrie{fill:#B5A06A;fill-opacity:.55;stroke:#F3E3C3;stroke-width:1.8;stroke-linejoin:round;transition:fill-opacity .4s ease}
+.territoire-map-wrap:hover .qc-estrie{fill-opacity:.72}
+.qc-label{font-family:'Work Sans',sans-serif;font-weight:600;font-size:10px;letter-spacing:2.4px;fill:#F3E3C3;text-transform:uppercase}
+.qc-label-estrie{font-family:'Work Sans',sans-serif;font-weight:700;font-size:9px;letter-spacing:2.2px;fill:#fff;text-transform:uppercase}
+.map-pin{cursor:pointer}
+.map-pin:focus-visible{outline:none}
+.map-pin .pin-shape{fill:#F3E3C3;transition:transform .2s ease;transform-origin:center;transform-box:fill-box}
+.map-pin:hover .pin-shape,.map-pin:focus-visible .pin-shape{transform:scale(1.18)}
+.map-pin.is-primary .pin-shape{fill:#fff}
+.map-pin .pin-pulse{fill:none;stroke:#F3E3C3;stroke-width:1;opacity:0;transform-origin:center;transform-box:fill-box}
+.map-pin.is-primary .pin-pulse{animation:pinPulse 2.6s ease-out infinite}
+.map-pin .pin-tooltip-text{opacity:0;transition:opacity .18s ease;paint-order:stroke;stroke:#1c1712;stroke-width:3px;stroke-linejoin:round}
+.map-pin:hover .pin-tooltip-text,.map-pin:focus-visible .pin-tooltip-text{opacity:1}
+@keyframes pinPulse{0%{opacity:.6;transform:scale(.3)}80%{opacity:0;transform:scale(2.8)}100%{opacity:0;transform:scale(2.8)}}
+.territoire-cta{position:relative;z-index:1;text-align:center;margin-top:clamp(48px,6vw,70px)}
+.btn-territoire{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:#fff;color:#1c1712;padding:17px 36px;font-size:12.5px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700;border-radius:3px;font-family:'Work Sans',sans-serif;transition:background .25s ease,transform .25s ease,box-shadow .25s ease}
+.btn-territoire svg{transition:transform .25s ease}
+.btn-territoire:hover{background:#F3E3C3;transform:translateY(-1px);box-shadow:0 16px 34px -16px rgba(0,0,0,.6)}
+.btn-territoire:hover svg{transform:translateX(4px)}
+.territoire-wave{position:absolute;left:0;bottom:-1px;width:100%;height:clamp(32px,5.5vw,64px);z-index:2}
+@media (max-width:900px){
+  .territoire-grid{grid-template-columns:1fr;text-align:center}
+  .territoire-eyebrow{justify-content:center}
+  .territoire-facts{justify-content:center}
+  .territoire-fact{text-align:left}
+  .territoire-map-wrap{max-width:300px;margin-top:10px}
+  .territoire-section::after{background:linear-gradient(180deg,rgba(7,5,3,.8) 0%,rgba(7,5,3,.5) 55%,rgba(7,5,3,.2) 100%)}
+}
+
+/* ---- Bande photo de clôture ---- */
+.agence-bottom-strip{height:clamp(140px,22vw,230px);background:url('ambiance-buffet.jpg') center 35%/cover no-repeat;position:relative}
+.agence-bottom-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.35))}
+
+@media (prefers-reduced-motion:reduce){
+  .map-pin .pin-pulse{animation:none}
+}
 </style>
 </head>
 <body>
 
 <nav id="site-nav"></nav>
+<h1 class="sr-only">Notre agence — LSB Réceptions, un interlocuteur du premier contact jusqu'au jour de l'événement</h1>
 
-<section class="page-hero">
-  <div class="eyebrow">Notre agence</div>
-  <h1>Un interlocuteur, du premier contact jusqu'au jour de l'événement</h1>
-  <p>LSB Réceptions — Les Saveurs Bantoues — reçoit votre demande, vous accompagne et coordonne la prestation avec un traiteur partenaire adapté.</p>
+<!-- ============ HERO LOGO ============ -->
+<section class="agence-hero">
+  <div class="agence-hero-logo reveal">
+    <img src="logo-lsb-receptions.png" alt="LSB Réceptions — Agence traiteur">
+  </div>
 </section>
 
-<section>
-  <div class="pillars">
-    <div class="pillar reveal">
-      <div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21v-2a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-      <h4>Un interlocuteur central</h4>
-      <p>Une seule personne-ressource pour vous accompagner, de la première demande jusqu'au jour de votre événement.</p>
+<!-- ============ TROIS ENGAGEMENTS ============ -->
+<section class="agence-pillars-section">
+  <div class="agence-pillars">
+    <div class="agence-pillar reveal">
+      <div class="agence-pillar-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20v-1a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v1"/><circle cx="8" cy="8" r="3.2"/><path d="M15 20v-1a4 4 0 0 0-2.4-3.66"/><path d="M13.2 4.3A3.2 3.2 0 0 1 14 10.6"/></svg></div>
+      <h3>Un interlocuteur dédié</h3>
+      <p>De la première demande jusqu'au jour de votre événement.</p>
     </div>
-    <div class="pillar reveal reveal-delay-1">
-      <div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-      <h4>La recherche du bon partenaire</h4>
-      <p>Nous orientons chaque demande vers un traiteur de notre réseau dont les formules et la disponibilité conviennent à votre projet.</p>
+    <div class="agence-pillar reveal reveal-delay-1">
+      <div class="agence-pillar-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16"/><path d="M5 18a7 7 0 0 1 14 0"/><path d="M12 7V4.6"/><circle cx="12" cy="3.4" r="1"/></svg></div>
+      <h3>Des partenaires de qualité</h3>
+      <p>Un réseau de professionnels soigneusement sélectionnés pour chaque type d'événement.</p>
     </div>
-    <div class="pillar reveal reveal-delay-2">
-      <div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-      <h4>Le suivi de l'événement</h4>
-      <p>Une fois la proposition retenue, nous coordonnons les détails de la prestation avec le partenaire assigné.</p>
+    <div class="agence-pillar reveal reveal-delay-2">
+      <div class="agence-pillar-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M8 3v4M16 3v4M3.5 10h17"/><path d="M8.2 14.2l2 2 4-4.2"/></svg></div>
+      <h3>Un suivi attentif</h3>
+      <p>Chaque détail est coordonné avec rigueur et transparence.</p>
     </div>
   </div>
 </section>
@@ -57,22 +132,86 @@
   </div>
 </section>
 
-<section>
-  <div class="section-head reveal">
-    <div class="eyebrow">Notre territoire</div>
-    <h2>L'Estrie d'abord, le Québec ensuite</h2>
-    <p>Nous commençons en Estrie, avec l'objectif de développer progressivement notre réseau de traiteurs partenaires ailleurs au Québec. Une demande en dehors de l'Estrie est étudiée selon le lieu, le projet et la disponibilité de nos partenaires — sans garantie de disponibilité avant cet examen.</p>
+<!-- ============ NOTRE TERRITOIRE ============ -->
+<section class="territoire-section">
+  <div class="territoire-grid">
+    <div class="territoire-text reveal">
+      <div class="territoire-eyebrow"><i></i><span>Notre territoire</span></div>
+      <h2 class="territoire-title">Partout en Estrie.<br><span class="gold">Partout au Québec.</span></h2>
+      <div class="territoire-facts">
+        <div class="territoire-fact">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div><strong>Partout en Estrie</strong><span>Sherbrooke et ses environs</span></div>
+        </div>
+        <div class="territoire-fact-sep"></div>
+        <div class="territoire-fact">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 16V7a1 1 0 0 1 1-1h9v10"/><path d="M13 10h4.5l3 3.3V16h-2"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>
+          <div><strong>Partout au Québec</strong><span>Un réseau de partenaires de confiance</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="territoire-map-wrap reveal reveal-delay-1">
+      <svg class="territoire-map" viewBox="0 0 400 420" role="img" aria-label="Carte stylisée du Québec, avec l'Estrie mise en évidence et des repères de villes réelles">
+        <path class="qc-outline" d="M60,40 L140,20 L220,15 L260,35 L300,30 L330,55 L355,90 L390,110 L385,140 L350,150 L320,135 L300,150 L310,180 L295,210 L305,230 L270,245 L250,260 L230,290 L210,310 L180,330 L150,345 L120,340 L95,320 L80,290 L70,260 L50,230 L45,190 L55,150 L40,110 L45,70 Z"/>
+        <path class="qc-estrie" d="M195,270 L225,275 L235,300 L225,325 L200,338 L175,330 L160,310 L165,285 Z"/>
+        <text class="qc-label" x="150" y="110">Québec</text>
+        <text class="qc-label-estrie" x="196" y="358" text-anchor="middle">Estrie</text>
+
+        <g class="map-pin" tabindex="0" role="img" aria-label="Gatineau" transform="translate(55,160)">
+          <title>Gatineau</title>
+          <circle class="pin-pulse" r="10"/>
+          <path class="pin-shape" d="M0,-9 C5,-9 8,-5.5 8,-1.5 C8,3.5 0,10 0,10 C0,10 -8,3.5 -8,-1.5 C-8,-5.5 -5,-9 0,-9 Z"/>
+          <text class="pin-tooltip-text" x="0" y="-22" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#F3E3C3">Gatineau</text>
+        </g>
+        <g class="map-pin" tabindex="0" role="img" aria-label="Montréal" transform="translate(92,268)">
+          <title>Montréal</title>
+          <circle class="pin-pulse" r="10"/>
+          <path class="pin-shape" d="M0,-9 C5,-9 8,-5.5 8,-1.5 C8,3.5 0,10 0,10 C0,10 -8,3.5 -8,-1.5 C-8,-5.5 -5,-9 0,-9 Z"/>
+          <text class="pin-tooltip-text" x="0" y="-22" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#F3E3C3">Montréal</text>
+        </g>
+        <g class="map-pin" tabindex="0" role="img" aria-label="Trois-Rivières" transform="translate(190,200)">
+          <title>Trois-Rivières</title>
+          <circle class="pin-pulse" r="10"/>
+          <path class="pin-shape" d="M0,-9 C5,-9 8,-5.5 8,-1.5 C8,3.5 0,10 0,10 C0,10 -8,3.5 -8,-1.5 C-8,-5.5 -5,-9 0,-9 Z"/>
+          <text class="pin-tooltip-text" x="0" y="-22" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#F3E3C3">Trois-Rivières</text>
+        </g>
+        <g class="map-pin" tabindex="0" role="img" aria-label="Québec" transform="translate(272,160)">
+          <title>Québec</title>
+          <circle class="pin-pulse" r="10"/>
+          <path class="pin-shape" d="M0,-9 C5,-9 8,-5.5 8,-1.5 C8,3.5 0,10 0,10 C0,10 -8,3.5 -8,-1.5 C-8,-5.5 -5,-9 0,-9 Z"/>
+          <text class="pin-tooltip-text" x="0" y="-22" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#F3E3C3">Québec</text>
+        </g>
+        <g class="map-pin" tabindex="0" role="img" aria-label="Saguenay" transform="translate(232,92)">
+          <title>Saguenay</title>
+          <circle class="pin-pulse" r="10"/>
+          <path class="pin-shape" d="M0,-9 C5,-9 8,-5.5 8,-1.5 C8,3.5 0,10 0,10 C0,10 -8,3.5 -8,-1.5 C-8,-5.5 -5,-9 0,-9 Z"/>
+          <text class="pin-tooltip-text" x="0" y="-22" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9" fill="#F3E3C3">Saguenay</text>
+        </g>
+        <g class="map-pin is-primary" tabindex="0" role="img" aria-label="Sherbrooke, Estrie — notre siège" transform="translate(196,304)">
+          <title>Sherbrooke — Estrie</title>
+          <circle class="pin-pulse" r="11"/>
+          <path class="pin-shape" d="M0,-11 C6.5,-11 10,-7 10,-2 C10,4.5 0,13 0,13 C0,13 -10,4.5 -10,-2 C-10,-7 -6.5,-11 0,-11 Z"/>
+          <text class="pin-tooltip-text" x="0" y="-26" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="9.5" font-weight="600" fill="#F3E3C3">Sherbrooke</text>
+        </g>
+      </svg>
+    </div>
   </div>
+
+  <div class="territoire-cta reveal reveal-delay-2">
+    <a class="btn-territoire" href="/soumission">
+      <span>Demander une soumission</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <svg class="territoire-wave" viewBox="0 0 1600 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,60 C420,2 1180,2 1600,60 L1600,60 L0,60 Z" fill="#F3E3C3"/>
+    <path d="M0,60 C420,2 1180,2 1600,60" fill="none" stroke="#B5A06A" stroke-width="2"/>
+  </svg>
 </section>
 
-<section class="on-dark">
-  <div class="cta-block reveal">
-    <div class="eyebrow">LSB Réceptions</div>
-    <h2 style="font-size:clamp(22px,3vw,28px)">Discutons de votre événement</h2>
-    <p>Décrivez votre projet — nous vous orientons vers la bonne formule et le bon partenaire.</p>
-    <a class="btn" href="/soumission">Demander une soumission</a>
-  </div>
-</section>
+<div class="agence-bottom-strip" role="presentation"></div>
 
 <footer>
   <div id="site-footer"></div>
